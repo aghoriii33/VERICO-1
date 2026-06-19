@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Root & Global ─────────────────────────────────────────────── */
+:root {
+  font-family: 'Outfit', sans-serif;
+  background-color: #0b0f19;
+  color: #f1f5f9;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(
+    ellipse at 10% 20%,
+    rgba(20, 26, 45, 1) 0%,
+    rgba(10, 14, 25, 1) 90%
+  );
+  background-attachment: fixed;
+}
+
+/* ─── Glassmorphism Design System ───────────────────────────────── */
+.glass-panel {
+  background: rgba(17, 24, 39, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel-hover:hover {
+  transform: translateY(-2px);
+  background: rgba(17, 24, 39, 0.8);
+  border-color: rgba(99, 102, 241, 0.25);
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.3),
+    0 8px 10px -6px rgba(99, 102, 241, 0.1);
+}
+
+.glass-input {
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f8fafc;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+}
+
+.glass-input:focus {
+  outline: none;
+  border-color: #6366f1;
+  background: rgba(30, 41, 59, 0.7);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+/* ─── Custom Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.6);
+}
+
+/* ─── Animations ────────────────────────────────────────────────── */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+.animate-glow {
+  animation: pulseGlow 4s infinite ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ─── Utility ───────────────────────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(135deg, #fff, #94a3b8, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

@@ -1,0 +1,89 @@
+rules:
+  - id: unlimited_liability
+    name: Unlimited Liability
+    severity: HIGH
+    description: "Flags clauses that waive or remove limits on vendor liability, placing the company at extreme financial risk."
+    regex_patterns:
+      - "(?i)unlimited liability"
+      - "(?i)liable without limit"
+      - "(?i)no limit on liability"
+      - "(?i)liability shall not be limited"
+      - "(?i)not be subject to any limit"
+    semantic_references:
+      - "The liability of the service provider shall be unlimited under this agreement."
+      - "Neither party limits its liability for any damages or breaches."
+      - "The vendor will be liable for all direct and indirect damages without limitation."
+      - "Liability is not capped or limited under any circumstances."
+
+  - id: auto_renewal
+    name: Auto-Renewal
+    severity: MEDIUM
+    description: "Flags automatic contract renewal terms which can lead to unexpected recurring costs if not cancelled in time."
+    regex_patterns:
+      - "(?i)automatically renew"
+      - "(?i)automatic renewal"
+      - "(?i)auto-renew"
+      - "(?i)renew automatically"
+      - "(?i)shall be extended automatically"
+    semantic_references:
+      - "This contract shall automatically renew for successive one-year terms unless cancelled."
+      - "At the end of the initial term, the agreement will auto-renew."
+      - "The service agreement extends automatically unless written notice is given 30 days prior."
+      - "The term of this agreement shall be automatically extended for subsequent periods."
+
+  - id: no_audit_rights
+    name: No Audit Rights
+    severity: HIGH
+    description: "Flags clauses that restrict, exclude, or deny the company the right to audit the vendor's compliance, security, or financial records."
+    regex_patterns:
+      - "(?i)no right to audit"
+      - "(?i)audit rights are excluded"
+      - "(?i)shall not have the right to audit"
+      - "(?i)audit of.*is prohibited"
+      - "(?i)no audits shall be permitted"
+      - "(?i)vendor is not subject to audit"
+    semantic_references:
+      - "The customer shall have no right to audit the books or security of the vendor."
+      - "Auditing of the system, data, or financial records by the client is strictly prohibited."
+      - "The supplier excludes all rights of audit or inspections by the customer."
+      - "Under no circumstances shall the vendor be required to submit to audits or reviews."
+
+  - id: termination_clause
+    name: Termination Clause
+    severity: MEDIUM
+    description: "Flags immediate termination clauses or termination without notice terms."
+    regex_patterns:
+      - "(?i)immediate termination"
+      - "(?i)terminate immediately"
+      - "(?i)termination without notice"
+      - "(?i)terminate without prior notice"
+    semantic_references:
+      - "Either party may terminate this agreement immediately and without notice upon any breach."
+      - "This agreement may be terminated by the vendor immediately without prior written notice."
+      - "We reserve the right to terminate the services immediately and without notice."
+
+  - id: data_ownership
+    name: Data Ownership Risk
+    severity: HIGH
+    description: "Flags clauses where the vendor claims ownership over client data or generated content."
+    regex_patterns:
+      - "(?i)vendor retains all rights to.*data"
+      - "(?i)data generated.*belongs to.*vendor"
+      - "(?i)client data.*becomes.*property of"
+      - "(?i)ownership of all data.*transferred to"
+    semantic_references:
+      - "All data generated during the engagement becomes the property of the vendor."
+      - "The vendor retains all rights to data processed under this agreement."
+
+  - id: indemnification_waiver
+    name: Indemnification Waiver
+    severity: HIGH
+    description: "Flags clauses where the client waives indemnification rights against the vendor."
+    regex_patterns:
+      - "(?i)waives all rights of indemnity"
+      - "(?i)no indemnification"
+      - "(?i)indemnify.*vendor.*against.*negligence"
+      - "(?i)hold harmless.*vendor.*all claims"
+    semantic_references:
+      - "The client waives all rights of indemnity and recovery against the service provider."
+      - "Company agrees to indemnify vendor against all claims, including those due to vendor negligence."
