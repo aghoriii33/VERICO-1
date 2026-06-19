@@ -1,28 +1,26 @@
 {
-  "version": 2,
-  "buildCommand": "cd frontend && npm install && npm run build",
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm --prefix frontend ci && npm --prefix frontend run build",
   "outputDirectory": "frontend/dist",
   "framework": "vite",
-  "python": {
-    "version": "3.11"
-  },
   "functions": {
-    "backend/api.py": {
-      "runtime": "python3.11",
+    "api/index.py": {
       "memory": 3008,
-      "maxDuration": 120,
-      "includeFiles": "backend/**",
-      "excludeFiles": "backend/.venv/**,backend/__pycache__/**,backend/uploads/**"
+      "maxDuration": 120
     }
   },
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "/backend/api"
+      "destination": "/api/index"
     },
     {
       "source": "/uploads/:path*",
-      "destination": "/backend/uploads/:path*"
+      "destination": "/api/index"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/index.html"
     }
   ],
   "headers": [
@@ -43,9 +41,5 @@
         }
       ]
     }
-  ],
-  "env": {
-    "PYTHONPATH": "./backend",
-    "PYTHONUNBUFFERED": "1"
-  }
+  ]
 }
