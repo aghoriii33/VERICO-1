@@ -1,39 +1,35 @@
 {
   "version": 2,
-  "builds": [
+  "buildCommand": "cd frontend && npm install && npm run build",
+  "outputDirectory": "frontend/dist",
+  "framework": "vite",
+  "functions": {
+    "backend/api.py": {
+      "runtime": "python3.11",
+      "memory": 1024,
+      "maxDuration": 60,
+      "includeFiles": "backend/**",
+      "excludeFiles": "backend/.venv/**,backend/__pycache__/**"
+    }
+  },
+  "rewrites": [
     {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "frontend/dist"
-      }
-    },
-    {
-      "src": "backend/app/main.py",
-      "use": "@vercel/python"
+      "source": "/api/:path*",
+      "destination": "/backend/api.py"
     }
   ],
-  "routes": [
+  "headers": [
     {
-      "src": "/api/(.*)",
-      "dest": "backend/app/main.py"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "frontend/dist/$1"
-    },
-    {
-      "src": "/",
-      "dest": "frontend/dist/index.html"
+      "source": "/api/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        }
+      ]
     }
   ],
   "env": {
-    "PYTHONPATH": "/var/task"
-  },
-  "functions": {
-    "backend/app/main.py": {
-      "memory": 1024,
-      "maxDuration": 60
-    }
+    "PYTHONPATH": "./"
   }
 }
