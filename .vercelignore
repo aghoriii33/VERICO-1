@@ -1,0 +1,14 @@
+.git
+.gitignore
+README.md
+.venv
+node_modules
+*.pyc
+__pycache__
+.pytest_cache
+.vscode
+.idea
+*.log
+.DS_Store
+uploads
+sample_documents
