@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { LayoutDashboard, HelpCircle, ShieldAlert, Sparkles } from "lucide-react";
+import { Analytics } from "@vercel/analytics/react";
 import Dashboard from "./pages/Dashboard";
 import QA from "./pages/QA";
 import RiskExplorer from "./pages/RiskExplorer";
@@ -67,6 +68,7 @@ export default function App() {
       <footer className="text-center py-4 text-[10px] text-slate-600 border-t border-slate-900">
         Powered by FAISS · SentenceTransformers · DistilBERT · FastAPI
       </footer>
+      <Analytics />
     </div>
   );
 }
