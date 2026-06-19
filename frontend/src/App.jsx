@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { LayoutDashboard, HelpCircle, ShieldAlert, Sparkles } from "lucide-react";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import Dashboard from "./pages/Dashboard";
 import QA from "./pages/QA";
 import RiskExplorer from "./pages/RiskExplorer";
@@ -69,6 +70,7 @@ export default function App() {
         Powered by FAISS · SentenceTransformers · DistilBERT · FastAPI
       </footer>
       <Analytics />
+      <SpeedInsights />
     </div>
   );
 }
