@@ -54,7 +54,6 @@ uploads/
 .vercel_python_packages/
 
 # UV dependencies
-uv.lock
-pyproject.toml
+/uv.lock
+/pyproject.toml
 backend/uv.lock
-backend/pyproject.toml
