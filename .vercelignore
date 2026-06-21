@@ -20,3 +20,11 @@ backend/__pycache__
 dist
 .env.local
 .env.*.local
+.vercel
+.vercel_python_packages
+backend/.vercel
+backend/.vercel_python_packages
+**/__pycache__
+**/.pytest_cache
+**/.venv
+**/node_modules
