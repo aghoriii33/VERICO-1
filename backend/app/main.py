@@ -87,12 +87,17 @@ app.add_middleware(
 app.include_router(api_router, prefix="/api")
 
 # Mount uploads directory for static PDF serving
-upload_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "uploads")
+if os.environ.get("VERCEL"):
+    upload_dir = "/tmp/uploads"
+else:
+    upload_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "uploads")
+
 try:
     os.makedirs(upload_dir, exist_ok=True)
 except Exception as e:
     logger.warning(f"Could not create uploads directory: {e}")
 app.mount("/uploads", StaticFiles(directory=upload_dir), name="uploads")
+
 
 
 @app.get("/")

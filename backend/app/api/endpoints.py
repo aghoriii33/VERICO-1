@@ -54,11 +54,15 @@ async def upload_documents(
     vs = request.app.state.vector_store
     rd = request.app.state.risk_detector
 
-    upload_dir = os.path.join(
-        os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
-        "uploads",
-    )
+    if os.environ.get("VERCEL"):
+        upload_dir = "/tmp/uploads"
+    else:
+        upload_dir = os.path.join(
+            os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+            "uploads",
+        )
     os.makedirs(upload_dir, exist_ok=True)
+
 
     results = []
 

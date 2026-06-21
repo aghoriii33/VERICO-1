@@ -13,10 +13,14 @@ from typing import List, Dict, Any, Optional
 
 logger = logging.getLogger(__name__)
 
-DB_PATH = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
-    "compliance_qa.db",
-)
+if os.environ.get("VERCEL"):
+    DB_PATH = "/tmp/compliance_qa.db"
+else:
+    DB_PATH = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+        "compliance_qa.db",
+    )
+
 
 
 class DatabaseManager:
