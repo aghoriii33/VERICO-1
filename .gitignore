@@ -48,3 +48,13 @@ yarn-error.log
 
 # Uploads
 uploads/
+.vercel
+
+# Vercel python builds
+.vercel_python_packages/
+
+# UV dependencies
+uv.lock
+pyproject.toml
+backend/uv.lock
+backend/pyproject.toml
